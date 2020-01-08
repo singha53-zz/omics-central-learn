@@ -1,0 +1,12 @@
+# Data Integration {#data-integration}
+
+## Supervised
+### DIABLO (SGCCDA)
+### Ensemble of glmnet classifiers
+### DIABLO2 (sMB-PLSDA)
+
+## Unsupervised
+### PANDA
+### MOFA
+### JIVE
+### SNF

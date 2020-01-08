@@ -1,0 +1,22 @@
+# Exploratory Data Analysis {#eda}
+
+## Principal Component Analysis
+
+### Method
+
+### Visualizations
+
+#### Scree plot
+#### Component plot
+#### Correlation circle
+#### Biplot
+
+## K-Means
+
+## Hierarchical clustering
+
+## Sample plots
+### Sample correlation heatmap
+### Sample histograms
+
+## Variable plots

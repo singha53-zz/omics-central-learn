@@ -1,0 +1,11 @@
+# Differential Expression Analysis {#diff-exp}
+
+## Ordinary Least Squares
+
+## LInear Models for MicroArrays and RNA-Seq
+### Robust LIMMA
+### LIMMA VOOM
+
+## Significance Analysis for Microarrays (SAM)
+
+## cell-specific Analysis for Microarrays (csSAM)

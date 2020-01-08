@@ -1,0 +1,7 @@
+# Batch Correction {#batch-correction}
+
+## ComBat
+
+## Surrogate Variable Analysis
+
+## Model adjustment

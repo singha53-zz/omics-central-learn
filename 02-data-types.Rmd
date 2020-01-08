@@ -1,0 +1,11 @@
+# Data-types {#data-types}
+
+## Microarrays
+
+## RNA sequencing
+
+## Nanostring
+
+## Biocrates
+
+## Multiple Reaction Monitoring
