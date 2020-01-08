@@ -24,7 +24,7 @@
 \PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
 \usepackage[unicode=true]{hyperref}
 \hypersetup{
-            pdftitle={A Minimal Book Example},
+            pdftitle={Omics Central},
             pdfauthor={Amrit Singh},
             pdfborder={0 0 0},
             breaklinks=true}
@@ -117,7 +117,7 @@
 }
 \makeatother
 
-\title{A Minimal Book Example}
+\title{Omics Central}
 \author{Amrit Singh}
 \date{2020-01-08}
 
@@ -128,28 +128,21 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\chapter{Prerequisites}\label{prerequisites}
+\chapter{Rationale}\label{rationale}
 
-This is a \emph{sample} book written in \textbf{Markdown}. You can use
-anything that Pandoc's Markdown supports, e.g., a math equation
-\(a^2 + b^2 = c^2\).
+This project was developed in order to create a resource warehouse for
+researchers analyze omics datasets of various types such as
+transcriptomics, proteomcs, metabolomics. I expect this resource to grow
+as others contribute to it. Think of it as an awesome-resource github
+repo but in a bookdown format. However, since this book is meant as
+documentation to the omics central web application, adding new methods
+will require pull requests to the omics central web app repos
+(omics-central-frontend, omics-central-backend and omics-central-docker)
+and bookdown repos (omics-central-learn and omics-central-contribute).
 
-The \textbf{bookdown} package can be installed from CRAN or Github:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"bookdown"}\NormalTok{)}
-\CommentTok{# or the development version}
-\CommentTok{# devtools::install_github("rstudio/bookdown")}
-\end{Highlighting}
-\end{Shaded}
-
-Remember each Rmd file contains one and only one chapter, and a chapter
-is defined by the first-level heading \texttt{\#}.
-
-To compile this example to PDF, you need XeLaTeX. You are recommended to
-install TinyTeX (which includes XeLaTeX):
-\url{https://yihui.name/tinytex/}.
+The purpose of this book is not to copy, paste other works but to link
+works by different authors in one place and explain concepts through the
+lens of an omics researcher.
 
 \chapter{Introduction}\label{intro}
 
@@ -230,25 +223,117 @@ You can write citations, too. For example, we are using the
 \textbf{bookdown} package \citep{R-bookdown} in this sample book, which
 was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
 
-\chapter{Literature}\label{literature}
+\chapter{Data-types}\label{data-types}
 
-Here is a review of existing methods.
+\section{Microarrays}\label{microarrays}
 
-\chapter{Methods}\label{methods}
+\section{RNA sequencing}\label{rna-sequencing}
 
-We describe our methods in this chapter.
+\section{Nanostring}\label{nanostring}
 
-\chapter{Applications}\label{applications}
+\section{Biocrates}\label{biocrates}
 
-Some \emph{significant} applications are demonstrated in this chapter.
+\section{Multiple Reaction
+Monitoring}\label{multiple-reaction-monitoring}
 
-\section{Example one}\label{example-one}
+\chapter{Exploratory Data Analysis}\label{eda}
 
-\section{Example two}\label{example-two}
+\section{Principal Component
+Analysis}\label{principal-component-analysis}
 
-\chapter{Final Words}\label{final-words}
+\subsection{Method}\label{method}
 
-We have finished a nice book.
+\subsection{Visualizations}\label{visualizations}
+
+\subsubsection{Scree plot}\label{scree-plot}
+
+\subsubsection{Component plot}\label{component-plot}
+
+\subsubsection{Correlation circle}\label{correlation-circle}
+
+\subsubsection{Biplot}\label{biplot}
+
+\section{K-Means}\label{k-means}
+
+\section{Hierarchical clustering}\label{hierarchical-clustering}
+
+\section{Sample plots}\label{sample-plots}
+
+\subsection{Sample correlation
+heatmap}\label{sample-correlation-heatmap}
+
+\subsection{Sample histograms}\label{sample-histograms}
+
+\section{Variable plots}\label{variable-plots}
+
+\chapter{Batch Correction}\label{batch-correction}
+
+\section{ComBat}\label{combat}
+
+\section{Surrogate Variable Analysis}\label{surrogate-variable-analysis}
+
+\section{Model adjustment}\label{model-adjustment}
+
+\chapter{Differential Expression Analysis}\label{diff-exp}
+
+\section{Ordinary Least Squares}\label{ordinary-least-squares}
+
+\section{LInear Models for MicroArrays and
+RNA-Seq}\label{linear-models-for-microarrays-and-rna-seq}
+
+\subsection{Robust LIMMA}\label{robust-limma}
+
+\subsection{LIMMA VOOM}\label{limma-voom}
+
+\section{Significance Analysis for Microarrays
+(SAM)}\label{significance-analysis-for-microarrays-sam}
+
+\section{cell-specific Analysis for Microarrays
+(csSAM)}\label{cell-specific-analysis-for-microarrays-cssam}
+
+\chapter{Network Analysis}\label{network-analysis}
+
+\section{DINGO}\label{dingo}
+
+\section{WGCNA}\label{wgcna}
+
+\section{PANDA}\label{panda}
+
+\section{BioNetStat}\label{bionetstat}
+
+\chapter{Data Integration}\label{data-integration}
+
+\section{Supervised}\label{supervised}
+
+\subsection{DIABLO (SGCCDA)}\label{diablo-sgccda}
+
+\subsection{Ensemble of glmnet
+classifiers}\label{ensemble-of-glmnet-classifiers}
+
+\subsection{DIABLO2 (sMB-PLSDA)}\label{diablo2-smb-plsda}
+
+\section{Unsupervised}\label{unsupervised}
+
+\subsection{PANDA}\label{panda-1}
+
+\subsection{MOFA}\label{mofa}
+
+\subsection{JIVE}\label{jive}
+
+\subsection{SNF}\label{snf}
+
+\chapter{Biological Enrichment}\label{bio-enrichment}
+
+\section{Enrichr}\label{enrichr}
+
+\section{SEAR}\label{sear}
+
+\section{CAMERA}\label{camera}
+
+\section{Network-based Gene Set
+Analysis}\label{network-based-gene-set-analysis}
+
+\chapter{Literature Mining}\label{lit}
 
 \bibliography{book.bib,packages.bib}
 
