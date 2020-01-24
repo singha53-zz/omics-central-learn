@@ -37,8 +37,6 @@ p <- ncol(X) # number of variables
 pca <- prcomp(X, scale. = TRUE)
 ```
 
-> prcomp() performs Principal Component Analysis (PCA) on the clinical dataset X (n observations (samples) x p variables). 
-
 #### What is PCA?
 
 * method to turn a dataset with correlated variables into another dataset with linearly uncorrelated variables called principal components (PCs).
