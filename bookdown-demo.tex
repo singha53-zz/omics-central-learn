@@ -119,7 +119,7 @@
 
 \title{Omics Central}
 \author{Amrit Singh}
-\date{2020-01-08}
+\date{2020-01-24}
 
 \begin{document}
 \maketitle
@@ -241,17 +241,301 @@ Monitoring}\label{multiple-reaction-monitoring}
 \section{Principal Component
 Analysis}\label{principal-component-analysis}
 
+//TODO insert video of EDA using Omics Central here
+
 \subsection{Method}\label{method}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## select dataset}
+\NormalTok{X <-}\StringTok{ }\NormalTok{X.trainList}\OperatorTok{$}\NormalTok{clinical}
+
+\NormalTok{## constants}
+\NormalTok{n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(hosp_3months) }\CommentTok{# number of samples}
+\NormalTok{k <-}\StringTok{ }\DecValTok{5} \CommentTok{# number of PCs}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{(X) }\CommentTok{# number of variables}
+
+\NormalTok{## run Principal Component Analysis}
+\NormalTok{pca <-}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(X, }\DataTypeTok{scale. =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+prcomp() performs Principal Component Analysis (PCA) on the clinical
+dataset X (n observations (samples) x p variables).
+\end{quote}
+
+\subsubsection{What is PCA?}\label{what-is-pca}
+
+\begin{itemize}
+\tightlist
+\item
+  method to turn a dataset with correlated variables into another
+  dataset with linearly uncorrelated variables called principal
+  components (PCs).
+\end{itemize}
+
+\subsubsection{Why is PCA useful?}\label{why-is-pca-useful}
+
+\begin{itemize}
+\tightlist
+\item
+  The first few PCs capture most of the variability in the data.
+\item
+  PCA can be used to visualize clustering patterns (samples or
+  variables) in the data, determine relationships between samples (see
+  Principal Component plot), between variables (see Correlation circle),
+  between samples and variables (see Biplot).
+\item
+  PCA is also useful in determining the influece of covariates, both
+  techincal (\emph{e.g.} batch effects) or biological (\emph{e.g.} sex).
+\end{itemize}
+
+\subsubsection{What is a principal component
+(PC)?}\label{what-is-a-principal-component-pc}
+
+\begin{itemize}
+\tightlist
+\item
+  a PC is a weighted average of the original predictors,
+  \textbf{PC}\textsubscript{\emph{i}} =
+  \textbf{Xv}\textsubscript{\emph{i}}, where \textbf{X} is a centered
+  matrix and \emph{i=1,\ldots{},n}.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{What do the vector of weights
+\textbf{v}\textsubscript{\emph{i}}
+do?}{What do the vector of weights vi do?}}\label{what-do-the-vector-of-weights-vi-do}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{v\textsubscript{i}} maximizes the variance;
+  \textbf{X\textsuperscript{T}X} and are called eigenvectors, weights or
+  loadings.
+\end{itemize}
+
+\subsubsection{\texorpdfstring{How do I compute the vector of weights,
+\emph{v\textsubscript{i}}?}{How do I compute the vector of weights, vi?}}\label{how-do-i-compute-the-vector-of-weights-vi}
+
+\begin{itemize}
+\tightlist
+\item
+  apply a factorization method called singular value decomposition
+  (SVD). SVD decomposes a matrix X into a product of 3 matrices,
+  \textbf{UDV\textsuperscript{T}}; \textbf{X}\textsubscript{\emph{np}} =
+  \textbf{U}\textsubscript{\emph{nxp}} x
+  \textbf{D}\textasciitilde{}\emph{pxp\textasciitilde{}} x
+  \textbf{V\textsuperscript{T}}\textsubscript{\emph{pp}} or
+  \textbf{X\textsuperscript{T}X} =
+  \textbf{VD\textsuperscript{2}V\textsuperscript{T}}.
+\item
+  The columns of \textbf{V} are the weights/loadings for each principal
+  component.
+\item
+  \textbf{D} is a diagnoal matrix where entry
+  \textbf{D}\textsubscript{\emph{i,i}} is the standard deviation of the
+  \emph{ith} principal component (PC).
+\item
+  Only the first \emph{k} PCs are needed to capture the majority of the
+  variation in the high dimensional dataset (\emph{n}
+  \textless{}\textless{} \emph{p} and \emph{k} \textless{}\textless{}
+  \emph{p}); \textbf{X}\textsubscript{\emph{nk}} =
+  \textbf{U}\textsubscript{\emph{nxk}} x
+  \textbf{D}\textsubscript{\emph{pxk}} x
+  \textbf{V\textsuperscript{T}}\textsubscript{\emph{nk}} such that
+  \textbf{X}\textsubscript{\emph{nk}} \(\approx\)
+  \textbf{X}\textsubscript{\emph{np}}.
+\end{itemize}
+
+\subsubsection{Why scale the data before applying
+PCA?}\label{why-scale-the-data-before-applying-pca}
+
+\begin{itemize}
+\tightlist
+\item
+  The clinical variables are on different unit scales (\emph{e.g.} Age
+  (years) \emph{vs.} Ejection fraction (\%)). Scaling makes the mean of
+  each variable zero and the standard deviation one.
+\end{itemize}
+
+References\\
+1. page 64-66 from ESL:
+\url{https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print10.pdf}\\
+2. Wikipedia:
+\url{https://en.wikipedia.org/wiki/Principal_component_analysis}
 
 \subsection{Visualizations}\label{visualizations}
 
 \subsubsection{Scree plot}\label{scree-plot}
 
+\begin{itemize}
+\tightlist
+\item
+  determine the proportion of variation explained by each principal
+  component.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{propVar <-}\StringTok{ }\NormalTok{(}\DecValTok{100} \OperatorTok{*}\StringTok{ }\NormalTok{pca}\OperatorTok{$}\NormalTok{sdev}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(pca}\OperatorTok{$}\NormalTok{sdev}\OperatorTok{^}\DecValTok{2}\NormalTok{))[}\DecValTok{1}\OperatorTok{:}\NormalTok{k]}
+\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{var =}\NormalTok{ propVar,}
+  \DataTypeTok{comp =} \KeywordTok{factor}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"PC"}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\NormalTok{k), }\KeywordTok{paste0}\NormalTok{(}\StringTok{"PC"}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\NormalTok{k))) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(comp, var)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Principal Component"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Proportion of variance explained (%)"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Scree plot"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{quote}
+The barplot depicts the proportion of variation that is captured by the
+first five PCs; the first PC captures \textasciitilde{}15.3\% of the
+variability in the dataset consisting of 26 variables.
+\end{quote}
+
 \subsubsection{Component plot}\label{component-plot}
 
-\subsubsection{Correlation circle}\label{correlation-circle}
+\begin{itemize}
+\tightlist
+\item
+  visualize the clustering of the samples and identify any clustering
+  with respect to covariates of interest.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## plot pca$x}
+\KeywordTok{fviz_pca_ind}\NormalTok{(pca, }\DataTypeTok{label=}\StringTok{"none"}\NormalTok{, }\DataTypeTok{habillage=}\NormalTok{hosp_3months,}
+  \DataTypeTok{addEllipses=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{ellipse.level=}\FloatTok{0.80}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{quote}
+The scatter plot above is a 2D depiction of a 26 (\# of clinical
+variables) dimensional dataset. PC1 and PC2 together capture 25.4\% of
+the variability in the clinical dataset. Some separation between the
+groups of interest can be observed.
+\end{quote}
+
+\subsubsection{Correlation Circle}\label{correlation-circle}
+
+\begin{itemize}
+\item
+  determine relationship between variables (based on the correlation
+  between each variable and PCs).
+\item
+  the angle (\(\theta\)) between two vectors determines the correlation
+  between the two variables:\\
+\item
+  \(\theta\)=0: postive correlation (corr=1)\\
+\item
+  0\textless{}\(\theta\)\textless{}90: postive correlation\\
+\item
+  \(\theta\)=90: zero correlation\\
+\item
+  90\textless{}\(\theta\)\textless{}180: negative correlation\\
+\item
+  \(\theta\)=180: negative correlation (corr=-1)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{fviz_pca_var}\NormalTok{(pca, }\DataTypeTok{repel =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\subsubsection{Correlation Circle (with a
+cut-off)}\label{correlation-circle-with-a-cut-off}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# compute correlation between variables and PCs}
+\NormalTok{corr <-}\StringTok{ }\KeywordTok{t}\NormalTok{(}\KeywordTok{cor}\NormalTok{(pca}\OperatorTok{$}\NormalTok{x[, }\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{], X))}
+
+\CommentTok{# correlation circle}
+\NormalTok{cor_cutoff <-}\StringTok{ }\FloatTok{0.5}
+\NormalTok{corr }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{as.data.frame}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{label =} \KeywordTok{rownames}\NormalTok{(.)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{abs}\NormalTok{(PC1) }\OperatorTok{>}\StringTok{ }\NormalTok{cor_cutoff }\OperatorTok{|}\StringTok{ }\KeywordTok{abs}\NormalTok{(PC2) }\OperatorTok{>}\StringTok{ }\NormalTok{cor_cutoff) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_circle}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x0 =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y0 =} \DecValTok{0}\NormalTok{, }\DataTypeTok{r =} \DecValTok{1}\NormalTok{), }\DataTypeTok{color =} \StringTok{"gray"}\NormalTok{, }\DataTypeTok{linetype=}\StringTok{"dashed"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_circle}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x0 =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y0 =} \DecValTok{0}\NormalTok{, }\DataTypeTok{r =}\NormalTok{ cor_cutoff), }\DataTypeTok{color =} \StringTok{"gray"}\NormalTok{, }\DataTypeTok{linetype=}\StringTok{"dashed"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ PC1, }\DataTypeTok{y =}\NormalTok{ PC2)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\NormalTok{, }\DataTypeTok{xend =}\NormalTok{ PC1, }\DataTypeTok{yend =}\NormalTok{ PC2), }\DataTypeTok{color =} \StringTok{"gray"}\NormalTok{, }\DataTypeTok{arrow =} \KeywordTok{arrow}\NormalTok{(}\DataTypeTok{length =} \KeywordTok{unit}\NormalTok{(}\FloatTok{0.03}\NormalTok{, }\StringTok{"npc"}\NormalTok{))) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_text_repel}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ PC1, }\DataTypeTok{y =}\NormalTok{ PC2, }\DataTypeTok{label =}\NormalTok{ label)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Correlation with PC1"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Correlation with PC2"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Correlation Circle"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{quote}
+The above plot only displays the variables if they have a correlation
+greater than 0.5 with either PC1 or PC2. Ischemia and Statins are
+positively correlated suggesting that patients with ischemia are likely
+to be on statins. BNP (Brain Natriuretic Peptide) is positively
+correlated with age and negatively correlated with Heart Rate.
+\end{quote}
+
+References\\
+1. Figure 1 from BioData Mining volume 5, Article number: 19 (2012)\\
+2. plotVar(): mixOmics R-library 3. fviz\_pca\_var(): factoextra
+R-library
 
 \subsubsection{Biplot}\label{biplot}
+
+\begin{itemize}
+\tightlist
+\item
+  superimpose the principal components with loadings vectors.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{fviz_pca_biplot}\NormalTok{(pca,}
+      \DataTypeTok{geom =} \StringTok{"point"}\NormalTok{,}
+      \DataTypeTok{col.ind =} \StringTok{"cos2"}\NormalTok{,}
+      \DataTypeTok{habillage=}\NormalTok{hosp_3months,}
+      \DataTypeTok{repel =} \OtherTok{TRUE}\NormalTok{,    }
+      \DataTypeTok{addEllipses=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{ellipse.level=}\FloatTok{0.80}\NormalTok{) }\OperatorTok{+}
+\StringTok{      }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position=}\StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{quote}
+Each arrow can be thought of as an axis. For example, BNP points to the
+left which means that patients on the left (PC1 \textless{} 0) have
+lower BNP levels than patients on the right (PC1 \textgreater{} 0).
+Patients at the center (PC=1) have an average BNP level. Note that this
+aligns well with the hospitalization status; \emph{ie.} patients on the
+left are more likely to be hospitalized as compared to patients on the
+right.
+\end{quote}
+
+References\\
+1. ggbiplot(): \url{https://github.com/vqv/ggbiplot}\\
+2. Biplot:
+\url{https://stackoverflow.com/questions/6578355/plotting-pca-biplot-with-ggplot2}\\
+3. biplot(): K. R. Gabriel (1971). The biplot graphical display of
+matrices with application to principal component analysis. Biometrika,
+58, 453--467. doi: 10.2307/2334381.\\
+4. fviz\_pca\_biplot():
+\url{http://www.sthda.com/english/wiki/fviz-pca-quick-principal-component-analysis-data-visualization-r-software-and-data-mining}
 
 \section{K-Means}\label{k-means}
 
@@ -266,6 +550,19 @@ heatmap}\label{sample-correlation-heatmap}
 
 \section{Variable plots}\label{variable-plots}
 
+\chapter{References}\label{references}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  BioData Mining volume 5, Article number: 19 (2012)\\
+\item
+  PH525x series: \url{http://genomicsclass.github.io/book/}
+\item
+  mixOmics: \url{https://mixomicsteam.github.io/Bookdown}
+\end{enumerate}
+
 \chapter{Batch Correction}\label{batch-correction}
 
 \section{ComBat}\label{combat}
@@ -273,6 +570,19 @@ heatmap}\label{sample-correlation-heatmap}
 \section{Surrogate Variable Analysis}\label{surrogate-variable-analysis}
 
 \section{Model adjustment}\label{model-adjustment}
+
+\section{References}\label{references-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Batch effect simluations:
+  \url{http://jtleek.com/svaseq/simulateData.html}
+\item
+  Surrogate Variable Analysis:
+  \url{https://bioconductor.org/packages/release/bioc/vignettes/sva/inst/doc/sva.pdf}
+\end{enumerate}
 
 \chapter{Differential Expression Analysis}\label{diff-exp}
 
