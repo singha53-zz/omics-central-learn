@@ -8,6 +8,10 @@ before_script:
 
 install:
   - Rscript -e "install.packages('tidyverse')"
+  - Rscript -e "install.packages('ggforce')"
+  - Rscript -e "install.packages('ggrepel')"
+  - Rscript -e "if (!require('devtools')) install.packages('devtools')"
+  - Rscript -e "devtools::install_github('kassambara/factoextra')"
 
 script:
   - ./_build.sh
