@@ -31,46 +31,6 @@
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{natbib}
 \bibliographystyle{apalike}
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
 \IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
@@ -146,82 +106,7 @@ lens of an omics researcher.
 
 \chapter{Introduction}\label{intro}
 
-You can label chapter and section titles using \texttt{\{\#label\}}
-after them, e.g., we can reference Chapter \ref{intro}. If you do not
-manually label them, there will be automatic labels anyway, e.g.,
-Chapter \ref{methods}.
-
-Figures and tables with captions will be placed in \texttt{figure} and
-\texttt{table} environments, respectively.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.8\linewidth]{bookdown-demo_files/figure-latex/nice-fig-1} 
-
-}
-
-\caption{Here is a nice figure!}\label{fig:nice-fig}
-\end{figure}
-
-Reference a figure by its code chunk label with the \texttt{fig:}
-prefix, e.g., see Figure \ref{fig:nice-fig}. Similarly, you can
-reference tables generated from \texttt{knitr::kable()}, e.g., see Table
-\ref{tab:nice-tab}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(iris, }\DecValTok{20}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}
-
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rrrrl}
-\toprule
-Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
-\midrule
-5.1 & 3.5 & 1.4 & 0.2 & setosa\\
-4.9 & 3.0 & 1.4 & 0.2 & setosa\\
-4.7 & 3.2 & 1.3 & 0.2 & setosa\\
-4.6 & 3.1 & 1.5 & 0.2 & setosa\\
-5.0 & 3.6 & 1.4 & 0.2 & setosa\\
-\addlinespace
-5.4 & 3.9 & 1.7 & 0.4 & setosa\\
-4.6 & 3.4 & 1.4 & 0.3 & setosa\\
-5.0 & 3.4 & 1.5 & 0.2 & setosa\\
-4.4 & 2.9 & 1.4 & 0.2 & setosa\\
-4.9 & 3.1 & 1.5 & 0.1 & setosa\\
-\addlinespace
-5.4 & 3.7 & 1.5 & 0.2 & setosa\\
-4.8 & 3.4 & 1.6 & 0.2 & setosa\\
-4.8 & 3.0 & 1.4 & 0.1 & setosa\\
-4.3 & 3.0 & 1.1 & 0.1 & setosa\\
-5.8 & 4.0 & 1.2 & 0.2 & setosa\\
-\addlinespace
-5.7 & 4.4 & 1.5 & 0.4 & setosa\\
-5.4 & 3.9 & 1.3 & 0.4 & setosa\\
-5.1 & 3.5 & 1.4 & 0.3 & setosa\\
-5.7 & 3.8 & 1.7 & 0.3 & setosa\\
-5.1 & 3.8 & 1.5 & 0.3 & setosa\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-You can write citations, too. For example, we are using the
-\textbf{bookdown} package \citep{R-bookdown} in this sample book, which
-was built on top of R Markdown and \textbf{knitr} \citep{xie2015}.
+\textbackslash{}TODO
 
 \chapter{Data-types}\label{data-types}
 
@@ -244,21 +129,6 @@ Analysis}\label{principal-component-analysis}
 //TODO insert video of EDA using Omics Central here
 
 \subsection{Method}\label{method}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{## select dataset}
-\NormalTok{X <-}\StringTok{ }\NormalTok{X.trainList}\OperatorTok{$}\NormalTok{clinical}
-
-\NormalTok{## constants}
-\NormalTok{n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(hosp_3months) }\CommentTok{# number of samples}
-\NormalTok{k <-}\StringTok{ }\DecValTok{5} \CommentTok{# number of PCs}
-\NormalTok{p <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{(X) }\CommentTok{# number of variables}
-
-\NormalTok{## run Principal Component Analysis}
-\NormalTok{pca <-}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(X, }\DataTypeTok{scale. =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{quote}
 prcomp() performs Principal Component Analysis (PCA) on the clinical
@@ -376,26 +246,12 @@ References\\
   component.
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{propVar <-}\StringTok{ }\NormalTok{(}\DecValTok{100} \OperatorTok{*}\StringTok{ }\NormalTok{pca}\OperatorTok{$}\NormalTok{sdev}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(pca}\OperatorTok{$}\NormalTok{sdev}\OperatorTok{^}\DecValTok{2}\NormalTok{))[}\DecValTok{1}\OperatorTok{:}\NormalTok{k]}
-\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{var =}\NormalTok{ propVar,}
-  \DataTypeTok{comp =} \KeywordTok{factor}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{"PC"}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\NormalTok{k), }\KeywordTok{paste0}\NormalTok{(}\StringTok{"PC"}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\NormalTok{k))) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(comp, var)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Principal Component"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Proportion of variance explained (%)"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Scree plot"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
 \includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-3-1.pdf}
 
 \begin{quote}
 The barplot depicts the proportion of variation that is captured by the
-first five PCs; the first PC captures \textasciitilde{}15.3\% of the
-variability in the dataset consisting of 26 variables.
+first five PCs; the first PC captures \textasciitilde{}30.9\% of the
+variability in the dataset consisting of 65 variables.
 \end{quote}
 
 \subsubsection{Component plot}\label{component-plot}
@@ -407,21 +263,13 @@ variability in the dataset consisting of 26 variables.
   with respect to covariates of interest.
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{## plot pca$x}
-\KeywordTok{fviz_pca_ind}\NormalTok{(pca, }\DataTypeTok{label=}\StringTok{"none"}\NormalTok{, }\DataTypeTok{habillage=}\NormalTok{hosp_3months,}
-  \DataTypeTok{addEllipses=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{ellipse.level=}\FloatTok{0.80}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-4-1.pdf}
 
 \begin{quote}
-The scatter plot above is a 2D depiction of a 26 (\# of clinical
-variables) dimensional dataset. PC1 and PC2 together capture 25.4\% of
-the variability in the clinical dataset. Some separation between the
-groups of interest can be observed.
+The scatter plot above is a 2D depiction of a 65 (\# of clinical
+variables) dimensional dataset. PC1 and PC2 together capture 40\% of the
+variability in the clinical dataset. Some separation between the groups
+of interest can be observed.
 \end{quote}
 
 \subsubsection{Correlation Circle}\label{correlation-circle}
@@ -445,40 +293,10 @@ groups of interest can be observed.
   \(\theta\)=180: negative correlation (corr=-1)
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{fviz_pca_var}\NormalTok{(pca, }\DataTypeTok{repel =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-5-1.pdf}
 
 \subsubsection{Correlation Circle (with a
 cut-off)}\label{correlation-circle-with-a-cut-off}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# compute correlation between variables and PCs}
-\NormalTok{corr <-}\StringTok{ }\KeywordTok{t}\NormalTok{(}\KeywordTok{cor}\NormalTok{(pca}\OperatorTok{$}\NormalTok{x[, }\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{], X))}
-
-\CommentTok{# correlation circle}
-\NormalTok{cor_cutoff <-}\StringTok{ }\FloatTok{0.5}
-\NormalTok{corr }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{as.data.frame}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{label =} \KeywordTok{rownames}\NormalTok{(.)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{abs}\NormalTok{(PC1) }\OperatorTok{>}\StringTok{ }\NormalTok{cor_cutoff }\OperatorTok{|}\StringTok{ }\KeywordTok{abs}\NormalTok{(PC2) }\OperatorTok{>}\StringTok{ }\NormalTok{cor_cutoff) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_circle}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x0 =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y0 =} \DecValTok{0}\NormalTok{, }\DataTypeTok{r =} \DecValTok{1}\NormalTok{), }\DataTypeTok{color =} \StringTok{"gray"}\NormalTok{, }\DataTypeTok{linetype=}\StringTok{"dashed"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_circle}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x0 =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y0 =} \DecValTok{0}\NormalTok{, }\DataTypeTok{r =}\NormalTok{ cor_cutoff), }\DataTypeTok{color =} \StringTok{"gray"}\NormalTok{, }\DataTypeTok{linetype=}\StringTok{"dashed"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ PC1, }\DataTypeTok{y =}\NormalTok{ PC2)) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_segment}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\NormalTok{, }\DataTypeTok{y =} \DecValTok{0}\NormalTok{, }\DataTypeTok{xend =}\NormalTok{ PC1, }\DataTypeTok{yend =}\NormalTok{ PC2), }\DataTypeTok{color =} \StringTok{"gray"}\NormalTok{, }\DataTypeTok{arrow =} \KeywordTok{arrow}\NormalTok{(}\DataTypeTok{length =} \KeywordTok{unit}\NormalTok{(}\FloatTok{0.03}\NormalTok{, }\StringTok{"npc"}\NormalTok{))) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_text_repel}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ PC1, }\DataTypeTok{y =}\NormalTok{ PC2, }\DataTypeTok{label =}\NormalTok{ label)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Correlation with PC1"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Correlation with PC2"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Correlation Circle"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-6-1.pdf}
 
@@ -503,18 +321,6 @@ R-library
   superimpose the principal components with loadings vectors.
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{fviz_pca_biplot}\NormalTok{(pca,}
-      \DataTypeTok{geom =} \StringTok{"point"}\NormalTok{,}
-      \DataTypeTok{col.ind =} \StringTok{"cos2"}\NormalTok{,}
-      \DataTypeTok{habillage=}\NormalTok{hosp_3months,}
-      \DataTypeTok{repel =} \OtherTok{TRUE}\NormalTok{,    }
-      \DataTypeTok{addEllipses=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{ellipse.level=}\FloatTok{0.80}\NormalTok{) }\OperatorTok{+}
-\StringTok{      }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position=}\StringTok{"bottom"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-7-1.pdf}
 
 \begin{quote}
@@ -536,6 +342,35 @@ matrices with application to principal component analysis. Biometrika,
 58, 453--467. doi: 10.2307/2334381.\\
 4. fviz\_pca\_biplot():
 \url{http://www.sthda.com/english/wiki/fviz-pca-quick-principal-component-analysis-data-visualization-r-software-and-data-mining}
+
+\subsubsection{Are the major sources of variation in the proteomics
+dataset related to any demographics
+variables?}\label{are-the-major-sources-of-variation-in-the-proteomics-dataset-related-to-any-demographics-variables}
+
+\begin{itemize}
+\tightlist
+\item
+  this is often answers by correlating the PCs with demographics
+  variables such as batch or disease of interest.
+\end{itemize}
+
+\paragraph{Test the Pearson correlation between PCs and demographic
+variables}\label{test-the-pearson-correlation-between-pcs-and-demographic-variables}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\paragraph{Test the Spearman correlation between PCs and demographic
+variables}\label{test-the-spearman-correlation-between-pcs-and-demographic-variables}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{quote}
+The associtation between PC1 and BNP has a p-value of \textless{} 0.01
+which supports the Biplot in which BNP was parallel to PC1 (x-axis).
+\end{quote}
+
+\textbf{WARNING}: This is only to be used for exploratory purposes and
+not for inference since spurious correlations may arise.
 
 \section{K-Means}\label{k-means}
 
