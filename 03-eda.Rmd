@@ -2,16 +2,177 @@
 
 ## Principal Component Analysis
 
-<iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="2" src="" frameborder="0" allowfullscreen></iframe>
+
+//TODO insert video of EDA using Omics Central here
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+# setup
+library(tidyverse);
+library(factoextra) # devtools::install_github("kassambara/factoextra")
+
+library(ggforce); # geom_circle
+library(ggrepel); # geom_text_repel
+library(ggbiplot); # devtools::install_github("vqv/ggbiplot")
+load(here::here("data", "biomonitoringBloodBiomarkersDatasets.Rdata"))
+
+```
 
 ### Method
+
+```{r}
+## select dataset
+X <- X.trainList$clinical
+
+## constants
+n <- length(hosp_3months) # number of samples
+k <- 5 # number of PCs
+p <- ncol(X) # number of variables
+
+## run Principal Component Analysis
+pca <- prcomp(X, scale. = TRUE)
+```
+
+> prcomp() performs Principal Component Analysis (PCA) on the clinical dataset X (n observations (samples) x p variables). 
+
+#### What is PCA?
+
+* method to turn a dataset with correlated variables into another dataset with linearly uncorrelated variables called principal components (PCs).
+
+#### Why is PCA useful?
+
+* The first few PCs capture most of the variability in the data. 
+* PCA can be used to visualize clustering patterns (samples or variables) in the data, determine relationships between samples (see Principal Component plot), between variables (see Correlation circle), between samples and variables (see Biplot). 
+* PCA is also useful in determining the influece of covariates, both techincal (*e.g.* batch effects) or biological (*e.g.* sex).
+
+#### What is a principal component (PC)?
+
+* a PC is a weighted average of the original predictors, **PC**~*i*~ = **X****v**~*i*~, where **X** is a centered matrix and *i=1,...,n*.
+
+#### What do the vector of weights **v**~*i*~ do?
+
+* *v~i~* maximizes the variance; **X^T^X** and are called eigenvectors, weights or loadings.
+
+#### How do I compute the vector of weights, *v~i~*?
+
+* apply a factorization method called singular value decomposition (SVD). SVD decomposes a matrix X into a product of 3 matrices, **UDV^T^**; **X**~*np*~ = **U**~*nxp*~ x **D**~*pxp~* x **V^T^**~*pp*~ or **X^T^X** = **VD^2^V^T^**. 
+* The columns of **V** are the weights/loadings for each principal component. 
+* **D** is a diagnoal matrix where entry **D**~*i,i*~ is the standard deviation of the *ith* principal component (PC). 
+* Only the first *k* PCs are needed to capture the majority of the variation in the high dimensional dataset (*n* << *p* and *k* << *p*); **X**~*nk*~ =  **U**~*nxk*~ x **D**~*pxk*~ x **V^T^**~*nk*~ such that **X**~*nk*~ $\approx$ **X**~*np*~.
+
+#### Why scale the data before applying PCA?
+
+* The clinical variables are on different unit scales (*e.g.* Age (years) *vs.* Ejection fraction (%)). Scaling makes the mean of each variable zero and the standard deviation one. 
+
+References  
+1. page 64-66 from ESL: https://web.stanford.edu/~hastie/ElemStatLearn/printings/ESLII_print10.pdf  
+2. Wikipedia: https://en.wikipedia.org/wiki/Principal_component_analysis
 
 ### Visualizations
 
 #### Scree plot
+
+* determine the proportion of variation explained by each principal component.
+
+```{r}
+propVar <- (100 * pca$sdev^2/sum(pca$sdev^2))[1:k]
+data.frame(var = propVar,
+  comp = factor(paste0("PC", 1:k), paste0("PC", 1:k))) %>% 
+  ggplot(aes(comp, var)) +
+  geom_bar(stat = "identity") +
+  xlab("Principal Component") +
+  ylab("Proportion of variance explained (%)") +
+  ggtitle("Scree plot") +
+  theme_classic()
+```
+
+> The barplot depicts the proportion of variation that is captured by the first five PCs; the first PC captures ~`r signif(propVar[1], 3)`% of the variability in the dataset consisting of `r p` variables.
+
 #### Component plot
-#### Correlation circle
+
+* visualize the clustering of the samples and identify any clustering with respect to covariates of interest.
+
+```{r}
+## plot pca$x
+fviz_pca_ind(pca, label="none", habillage=hosp_3months,
+  addEllipses=TRUE, ellipse.level=0.80)
+```
+
+> The scatter plot above is a 2D depiction of a `r p` (# of clinical variables) dimensional dataset. PC1 and PC2 together capture `r signif(propVar[1]+propVar[2], 3)`% of the variability in the clinical dataset. Some separation between the groups of interest can be observed.
+
+#### Correlation Circle
+
+* determine relationship between variables (based on the correlation between each variable and PCs).
+
+* the angle ($\theta$) between two vectors determines the correlation between the two variables:  
+  * $\theta$=0: postive correlation (corr=1)  
+  * 0<$\theta$<90: postive correlation  
+  * $\theta$=90: zero correlation  
+  * 90<$\theta$<180: negative correlation  
+  * $\theta$=180: negative correlation (corr=-1)  
+
+```{r}
+fviz_pca_var(pca, repel = TRUE)
+```
+
+#### Correlation Circle (with a cut-off)
+
+```{r}
+# compute correlation between variables and PCs
+corr <- t(cor(pca$x[, 1:2], X))
+
+# correlation circle
+cor_cutoff <- 0.5
+corr %>% 
+  as.data.frame() %>% 
+  mutate(label = rownames(.)) %>% 
+  filter(abs(PC1) > cor_cutoff | abs(PC2) > cor_cutoff) %>% 
+  ggplot() +
+  geom_circle(aes(x0 = 0, y0 = 0, r = 1), color = "gray", linetype="dashed") + 
+  geom_circle(aes(x0 = 0, y0 = 0, r = cor_cutoff), color = "gray", linetype="dashed") + 
+  geom_point(aes(x = PC1, y = PC2)) +
+  geom_segment(aes(x = 0, y = 0, xend = PC1, yend = PC2), color = "gray", arrow = arrow(length = unit(0.03, "npc"))) + 
+  geom_text_repel(aes(x = PC1, y = PC2, label = label)) + 
+  xlab("Correlation with PC1") +
+  ylab("Correlation with PC2") +
+  theme_classic() +
+  ggtitle("Correlation Circle")
+```
+
+
+> The above plot only displays the variables if they have a correlation greater than 0.5 with either PC1 or PC2. Ischemia and Statins are positively correlated suggesting that patients with ischemia are likely to be on statins. BNP (Brain Natriuretic Peptide) is positively correlated with age and negatively correlated with Heart Rate.
+
+References  
+1. Figure 1 from BioData Mining volume 5, Article number: 19 (2012)  
+2. plotVar(): mixOmics R-library
+3. fviz_pca_var(): factoextra R-library
+
 #### Biplot
+
+* superimpose the principal components with loadings vectors.
+
+```{r, warning=FALSE, message=FALSE}
+fviz_pca_biplot(pca,
+      geom = "point",
+      col.ind = "cos2",
+      habillage=hosp_3months,
+      repel = TRUE,    
+      addEllipses=TRUE, ellipse.level=0.80) +
+      theme(legend.position="bottom")
+```
+
+> Each arrow can be thought of as an axis. For example, BNP points to the left which means that patients on the left (PC1 < 0) have lower BNP levels than patients on the right (PC1 > 0). Patients at the center (PC=1) have an average BNP level. Note that this aligns well with the hospitalization status; *ie.* patients on the left are more likely to be hospitalized as compared to patients on the right.
+
+References  
+1. ggbiplot(): https://github.com/vqv/ggbiplot  
+2. Biplot: https://stackoverflow.com/questions/6578355/plotting-pca-biplot-with-ggplot2  
+3. biplot(): K. R. Gabriel (1971). The biplot graphical display of matrices with application to principal component analysis. Biometrika, 58, 453–467. doi: 10.2307/2334381.  
+4. fviz_pca_biplot(): http://www.sthda.com/english/wiki/fviz-pca-quick-principal-component-analysis-data-visualization-r-software-and-data-mining
+
+```{r}
+
+```
+
 
 ## K-Means
 
@@ -22,3 +183,9 @@
 ### Sample histograms
 
 ## Variable plots
+
+# References
+1. BioData Mining volume 5, Article number: 19 (2012)  
+2. PH525x series: http://genomicsclass.github.io/book/
+3. mixOmics: https://mixomicsteam.github.io/Bookdown
+
