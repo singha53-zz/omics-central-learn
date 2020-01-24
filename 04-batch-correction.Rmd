@@ -5,3 +5,8 @@
 ## Surrogate Variable Analysis
 
 ## Model adjustment
+
+
+## References
+1. Batch effect simluations: http://jtleek.com/svaseq/simulateData.html
+2. Surrogate Variable Analysis: https://bioconductor.org/packages/release/bioc/vignettes/sva/inst/doc/sva.pdf
