@@ -199,4 +199,5 @@ pcaPvalueHeatmap(pcs = pcs, demo = demo, method = "spearman")
 1. BioData Mining volume 5, Article number: 19 (2012)  
 2. PH525x series: http://genomicsclass.github.io/book/
 3. mixOmics: https://mixomicsteam.github.io/Bookdown
+4. EDA in R: https://bookdown.org/rdpeng/exdata/
 
