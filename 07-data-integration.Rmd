@@ -5,6 +5,9 @@
 ### Ensemble of glmnet classifiers
 ### DIABLO2 (sMB-PLSDA)
 
+## References
+1. caret: https://topepo.github.io/caret/index.html
+
 ## Unsupervised
 ### PANDA
 ### MOFA
