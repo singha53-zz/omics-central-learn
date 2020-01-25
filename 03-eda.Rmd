@@ -1,7 +1,5 @@
 # Exploratory Data Analysis {#eda}
 
-## Principal Component Analysis
-
 <iframe width="560" height="2" src="" frameborder="0" allowfullscreen></iframe>
 
 //TODO insert video of EDA using Omics Central here
@@ -20,11 +18,6 @@ source("helper_functions.R")
 # load datasets
 load(here::here("data", "biomonitoringBloodBiomarkersDatasets.Rdata"))
 
-```
-
-### Method
-
-```{r}
 ## select dataset
 X <- X.trainList$proteins
 
@@ -32,7 +25,13 @@ X <- X.trainList$proteins
 n <- length(hosp_3months) # number of samples
 k <- 5 # number of PCs
 p <- ncol(X) # number of variables
+```
 
+## Principal Component Analysis
+
+### Method
+
+```{r}
 ## run Principal Component Analysis
 pca <- prcomp(X, scale. = TRUE)
 ```
@@ -195,16 +194,6 @@ pcaPvalueHeatmap(pcs = pcs, demo = demo, method = "spearman")
 > The associtation between PC1 and BNP has a p-value of < 0.01 which supports the Biplot in which BNP was parallel to PC1 (x-axis). 
 
 **WARNING**: This is only to be used for exploratory purposes and not for inference since spurious correlations may arise.
-
-## K-Means
-
-## Hierarchical clustering
-
-## Sample plots
-### Sample correlation heatmap
-### Sample histograms
-
-## Variable plots
 
 # References
 1. BioData Mining volume 5, Article number: 19 (2012)  
