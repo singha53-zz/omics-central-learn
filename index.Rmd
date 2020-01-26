@@ -14,6 +14,6 @@ description: "This book covers some commonly used to explore and analyze omics d
 
 # Rationale
 
-This project was developed in order to create a resource warehouse for researchers analyze omics datasets of various types such as transcriptomics, proteomcs, metabolomics. I expect this resource to grow as others contribute to it. Think of it as an awesome-resource github repo but in a bookdown format. However, since this book is meant as documentation to the omics central web application, adding new methods will require pull requests to the omics central web app repos (omics-central-frontend, omics-central-backend and omics-central-docker) and bookdown repos (omics-central-learn and omics-central-contribute).
+This project was developed in order to create a resource warehouse for researchers analyzing omics datasets of various types such as transcriptomics, proteomcs, metabolomics. I expect this resource to grow as others contribute to it. Think of it as an awesome-resource github repo but in a bookdown format. However, since this book is meant as documentation to the omics central web application, adding new methods will require pull requests to the omics central web app repos (omics-central-frontend, omics-central-backend and omics-central-docker) and bookdown repos ([omics-central-learn](https://github.com/singha53/omics-central-learn) and omics-central-contribute [omics-central-learn](https://github.com/singha53/omics-central-contribute)).
 
-The purpose of this book is not to copy, paste other works but to link works by different authors in one place and explain concepts through the lens of an omics researcher.
+Site under development...
