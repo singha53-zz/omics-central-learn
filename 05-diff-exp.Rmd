@@ -1,11 +1,35 @@
 # Differential Expression Analysis {#diff-exp}
 
-## Ordinary Least Squares
+<iframe width="560" height="2" src="" frameborder="0" allowfullscreen></iframe>
 
-## LInear Models for MicroArrays and RNA-Seq
-### Robust LIMMA
-### LIMMA VOOM
+//TODO insert video of performing differential expression analysis using Omics Central here
 
-## Significance Analysis for Microarrays (SAM)
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(cache = FALSE, echo = FALSE, warning = FALSE, message = FALSE, tidy = TRUE)
 
-## cell-specific Analysis for Microarrays (csSAM)
+# setup
+library(limma);
+
+# load datasets
+load(here::here("data", "biomonitoringBloodBiomarkersDatasets.Rdata"))
+
+## select dataset
+X <- X.trainList$proteins
+```
+
+## Methods
+
+### Ordinary Least Squares
+
+```{r}
+
+```
+
+
+### LInear Models for MicroArrays and RNA-Seq
+#### Robust LIMMA
+#### LIMMA VOOM
+
+### Significance Analysis for Microarrays (SAM)
+
+### cell-specific Analysis for Microarrays (csSAM)
