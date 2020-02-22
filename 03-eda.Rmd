@@ -197,7 +197,7 @@ pc_cov_spearman_pvals$p
 
 **WARNING**: This is only to be used for exploratory purposes and not for inference since spurious correlations may arise.
 
-# References
+*References*
 1. BioData Mining volume 5, Article number: 19 (2012)  
 2. PH525x series: http://genomicsclass.github.io/book/
 3. mixOmics: https://mixomicsteam.github.io/Bookdown
