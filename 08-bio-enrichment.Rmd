@@ -1,8 +1,45 @@
 # Biological Enrichment {#bio-enrichment}
 
+```{r}
+devtools::install_github("singha53/omicsCentralR")
+library(omicsCentral)
+data("pathwayDB")
+data("asthma")
+
+```
+
 ## Enrichr
 
 ## SEAR
+
+### hypergeometric tests
+
+#### hypergeometric probabilities
+
+* The sample space consists of a total of n genes, out of which m genes belong to Pathway A. Select k genes at random (without replacement). What is the probability that i of the selected genes belong to Pathway A.
+* parameters include:
+  * n: total number of genes observed
+  * m: number of genes in Pathway A
+  * k: genes selected at random
+  * i: number of selected genes that belong to Pathway A
+
+Size of sample space (\(\Omega \)) = \(n \choose k \): all ways to draw k genes from n genes
+Event of interest: # of ways to get i genes from Pathway A after drawing k genes = (# of ways to select i genes from Pathway A from a total of m genes in Pathway A, \(m \choose i \)) x (# of ways to get k-i from the remaining n-m genes not in Pathway A, \(n-m \choose k-i \))
+
+Prob = $\frac{\binom{m}{i}\binom{n-m}{k-i}}{n \choose k}$
+
+![hyperPropGIF](https://github.com/singha53/omics-central-learn/blob/master/supplement/08-bio-enrichment/hyperGTest/hyperProps.gif)
+
+```{r}
+
+
+
+
+```
+
+#### References
+1. [Probability - The Science of Uncertainty and Data](https://www.edx.org/course/probability-the-science-of-uncertainty-and-data)
+2. Falcon S., Gentleman R. (2008) Hypergeometric Testing Used for Gene Set Enrichment Analysis. In: Bioconductor Case Studies. Use R!. Springer, New York, NY
 
 ## CAMERA
 
