@@ -2,7 +2,7 @@
 
 ```{r}
 # devtools::install_github("singha53/omicsCentralR")
-library(omicsCentral)
+library(omicsCentralDatasets)
 data("pathwayDB")
 data("asthma")
 
