@@ -15,6 +15,8 @@ install:
   - Rscript -e "if (!require('devtools')) install.packages('devtools')"
   - Rscript -e "devtools::install_github('kassambara/factoextra')"
   - Rscript -e "devtools::install_github('singha53/omicsCentralR')"
+  - Rscript -e "devtools::install_github('singha53/omicsCentralDatasets')"
+  - Rscript -e "devtools::install_github('singha53/omicsCentralEda')"
   - Rscript -e "if (!require('BiocManager')) install.packages('BiocManager')"
   - Rscript -e "BiocManager::install('limma')"
   - Rscript -e "install.packages('csSAM')"
