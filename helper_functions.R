@@ -186,10 +186,7 @@ runSAM2 = function (G, y, s0.sam = NULL, stand.r = TRUE)
   return(tt.sam)
 }
 
-x = G
-y = y
-s0 = 0
-sd = NULL
+
 ttest.func2 = function (x, y, s0 = 0, sd = NULL) {
   n1 <- sum(y == levels(y)[1])
   n2 <- sum(y == levels(y)[2])
