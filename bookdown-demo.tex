@@ -79,7 +79,7 @@
 
 \title{Omics Central}
 \author{Amrit Singh}
-\date{2020-01-29}
+\date{2020-02-25}
 
 \begin{document}
 \maketitle
@@ -368,20 +368,11 @@ which supports the Biplot in which BNP was parallel to PC1 (x-axis).
 \textbf{WARNING}: This is only to be used for exploratory purposes and
 not for inference since spurious correlations may arise.
 
-\chapter{References}\label{references}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  BioData Mining volume 5, Article number: 19 (2012)\\
-\item
-  PH525x series: \url{http://genomicsclass.github.io/book/}
-\item
-  mixOmics: \url{https://mixomicsteam.github.io/Bookdown}
-\item
-  EDA in R: \url{https://bookdown.org/rdpeng/exdata/}
-\end{enumerate}
+\emph{References} 1. BioData Mining volume 5, Article number: 19
+(2012)\\
+2. PH525x series: \url{http://genomicsclass.github.io/book/} 3.
+mixOmics: \url{https://mixomicsteam.github.io/Bookdown} 4. EDA in R:
+\url{https://bookdown.org/rdpeng/exdata/}
 
 \chapter{Batch Correction}\label{batch-correction}
 
@@ -391,7 +382,7 @@ not for inference since spurious correlations may arise.
 
 \section{Model adjustment}\label{model-adjustment}
 
-\section{References}\label{references-1}
+\section{References}\label{references}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -416,15 +407,43 @@ Omics Central here
 \subsection{LInear Models for MicroArrays and
 RNA-Seq}\label{linear-models-for-microarrays-and-rna-seq}
 
+\subsubsection{LIMMA}\label{limma}
+
 \subsubsection{Robust LIMMA}\label{robust-limma}
 
-\subsubsection{LIMMA VOOM}\label{limma-voom}
+\subsubsection{LIMMA VOOM (adjusts for
+heteroscdasticity)}\label{limma-voom-adjusts-for-heteroscdasticity}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-14-1.pdf}
 
 \subsection{Significance Analysis for Microarrays
 (SAM)}\label{significance-analysis-for-microarrays-sam}
 
 \subsection{cell-specific Analysis for Microarrays
 (csSAM)}\label{cell-specific-analysis-for-microarrays-cssam}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\section{Visualizations}\label{visualizations-1}
+
+\subsection{Number of differentially expressed
+genes}\label{number-of-differentially-expressed-genes}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\subsection{P-value histograms}\label{p-value-histograms}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\subsection{MA plot}\label{ma-plot}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\subsection{csSAM}\label{cssam}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-19-1.pdf}
 
 \chapter{Network Analysis}\label{network-analysis}
 
@@ -447,7 +466,7 @@ classifiers}\label{ensemble-of-glmnet-classifiers}
 
 \subsection{DIABLO2 (sMB-PLSDA)}\label{diablo2-smb-plsda}
 
-\section{References}\label{references-2}
+\section{References}\label{references-1}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -471,6 +490,51 @@ classifiers}\label{ensemble-of-glmnet-classifiers}
 \section{Enrichr}\label{enrichr}
 
 \section{SEAR}\label{sear}
+
+\subsection{hypergeometric tests}\label{hypergeometric-tests}
+
+\subsubsection{hypergeometric
+probabilities}\label{hypergeometric-probabilities}
+
+\begin{itemize}
+\tightlist
+\item
+  The sample space consists of a total of n genes, out of which m genes
+  belong to Pathway A. Select k genes at random (without replacement).
+  What is the probability that i of the selected genes belong to Pathway
+  A.
+\item
+  parameters include:
+\item
+  n: total number of genes observed
+\item
+  m: number of genes in Pathway A
+\item
+  k: genes selected at random
+\item
+  i: number of selected genes that belong to Pathway A
+\end{itemize}
+
+Size of sample space (\(\Omega \)) = \(n \choose k \): all ways to draw
+k genes from n genes Event of interest: \# of ways to get i genes from
+Pathway A after drawing k genes = (\# of ways to select i genes from
+Pathway A from a total of m genes in Pathway A, \(m \choose i \)) x (\#
+of ways to get k-i from the remaining n-m genes not in Pathway A,
+\(n-m \choose k-i \))
+
+\subsubsection{References}\label{references-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{https://www.edx.org/course/probability-the-science-of-uncertainty-and-data}{Probability
+  - The Science of Uncertainty and Data}
+\item
+  Falcon S., Gentleman R. (2008) Hypergeometric Testing Used for Gene
+  Set Enrichment Analysis. In: Bioconductor Case Studies. Use R!.
+  Springer, New York, NY
+\end{enumerate}
 
 \section{CAMERA}\label{camera}
 
