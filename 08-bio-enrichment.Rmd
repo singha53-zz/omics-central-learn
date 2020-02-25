@@ -27,7 +27,9 @@ Size of sample space (\(\Omega \)) = \(n \choose k \): all ways to draw k genes 
 Event of interest: # of ways to get i genes from Pathway A after drawing k genes = (# of ways to select i genes from Pathway A from a total of m genes in Pathway A, \(m \choose i \)) x (# of ways to get k-i from the remaining n-m genes not in Pathway A, \(n-m \choose k-i \))
 
 
-![hyperPropGIF](https://github.com/singha53/omics-central-learn/blob/master/supplement/08-bio-enrichment/hyperGTest/hyperProps.gif)
+![hyperPropGIF](https://www.youtube.com/watch?v=pZp_PyVW9fc)
+
+<iframe width="560" height="2" src="https://www.youtube.com/watch?v=pZp_PyVW9fc" frameborder="0" allowfullscreen></iframe>
 
 ```{r}
 
