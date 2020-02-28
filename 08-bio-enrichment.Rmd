@@ -1,8 +1,9 @@
 # Biological Enrichment {#bio-enrichment}
 
 ```{r}
+library(tidyverse)
 # devtools::install_github("singha53/omicsCentralR")
-library(omicsCentralDatasets)
+library(omicsCentral)
 data("pathwayDB")
 data("asthma")
 
@@ -24,13 +25,59 @@ data("asthma")
   * i: number of selected genes that belong to Pathway A
 
 Size of sample space (\(\Omega \)) = \(n \choose k \): all ways to draw k genes from n genes
+
 Event of interest: # of ways to get i genes from Pathway A after drawing k genes = (# of ways to select i genes from Pathway A from a total of m genes in Pathway A, \(m \choose i \)) x (# of ways to get k-i from the remaining n-m genes not in Pathway A, \(n-m \choose k-i \))
 
 $P(X = i)$ = $\frac{\binom{m}{i}\binom{n-m}{k-i}}{n \choose k}$
 
+#### Asthma case study
+
+##### Step 1: Number of genes measured
+
+`r ncol(asthma$mrna)` gene transcripts were profiled in `r nrow(asthma$demo)` blood samples from asthmatic individual undergoing allergen inhalation challenge.
+
+##### Step 2: Number of genes observed in the DB
+
+The [KEGG database](https://github.com/singha53/omicsCentralDatasets/blob/master/inst/extdata/dataCleaning/pathwayDB/pathways.md) consisted of `r length(unique(subset(pathwayDB, DB == "KEGG_2019_Human")$Genes))` genes.
+
+##### Step 3: Overlap between gene dataset and pathway DB
+
+```{r}
+overlap <- intersect(colnames(asthma$mrna), unique(subset(pathwayDB, DB == "KEGG_2019_Human")$Genes))
+```
+
+There were `r length(overlap)` genes that overlapped between the genes measured and those observed in the DB.
+
+##### Step 4: Keep common genes in gene expression dataset and KEGG DB.
+
+```{r}
+asthmaMrnaEset <- asthma$mrna[, overlap]
+keggDB <- subset(pathwayDB, DB == "KEGG_2019_Human")
+keggDB <- keggDB[keggDB$Genes %in% overlap, ]
+
+n_count <- keggDB %>% 
+  group_by(Pathways) %>% 
+  summarise(n = n())
+
+ggplot(n_count, aes(x = n)) +
+  geom_histogram() +
+  xlab("Number of genes") +
+  ylab("Number of pathways") +
+  theme_classic()
+```
+
+#### Number of differentially expressed genes between pre and post allergen inhalation challenge
+
 ```{r}
 
+```
 
+
+
+#### P-value of randomly selecting 50 genes from all observed genes
+
+```{r}
+subset(keggDB, Pathways == "Asthma")
 
 
 ```
