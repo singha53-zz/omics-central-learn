@@ -173,11 +173,62 @@
 <li>k: genes selected at random</li>
 <li>i: number of selected genes that belong to Pathway A</li>
 </ul>
-<p>Size of sample space (<span class="math inline">\(\Omega \)</span>) = <span class="math inline">\(n \choose k \)</span>: all ways to draw k genes from n genes Event of interest: # of ways to get i genes from Pathway A after drawing k genes = (# of ways to select i genes from Pathway A from a total of m genes in Pathway A, <span class="math inline">\(m \choose i \)</span>) x (# of ways to get k-i from the remaining n-m genes not in Pathway A, <span class="math inline">\(n-m \choose k-i \)</span>)</p>
+<p>Size of sample space (<span class="math inline">\(\Omega \)</span>) = <span class="math inline">\(n \choose k \)</span>: all ways to draw k genes from n genes</p>
+<p>Event of interest: # of ways to get i genes from Pathway A after drawing k genes = (# of ways to select i genes from Pathway A from a total of m genes in Pathway A, <span class="math inline">\(m \choose i \)</span>) x (# of ways to get k-i from the remaining n-m genes not in Pathway A, <span class="math inline">\(n-m \choose k-i \)</span>)</p>
 <p><span class="math inline">\(P(X = i)\)</span> = <span class="math inline">\(\frac{\binom{m}{i}\binom{n-m}{k-i}}{n \choose k}\)</span></p>
 </div>
+<div id="asthma-case-study" class="section level4">
+<h4><span class="header-section-number">9.2.1.2</span> Asthma case study</h4>
+<div id="step-1-number-of-genes-measured" class="section level5">
+<h5><span class="header-section-number">9.2.1.2.1</span> Step 1: Number of genes measured</h5>
+<p>5443 gene transcripts were profiled in 28 blood samples from asthmatic individual undergoing allergen inhalation challenge.</p>
+</div>
+<div id="step-2-number-of-genes-observed-in-the-db" class="section level5">
+<h5><span class="header-section-number">9.2.1.2.2</span> Step 2: Number of genes observed in the DB</h5>
+<p>The <a href="https://github.com/singha53/omicsCentralDatasets/blob/master/inst/extdata/dataCleaning/pathwayDB/pathways.md">KEGG database</a> consisted of 7802 genes.</p>
+</div>
+<div id="step-3-overlap-between-gene-dataset-and-pathway-db" class="section level5">
+<h5><span class="header-section-number">9.2.1.2.3</span> Step 3: Overlap between gene dataset and pathway DB</h5>
+<p>There were 5357 genes that overlapped between the genes measured and those observed in the DB.</p>
+</div>
+<div id="step-4-keep-common-genes-in-gene-expression-dataset-and-kegg-db." class="section level5">
+<h5><span class="header-section-number">9.2.1.2.4</span> Step 4: Keep common genes in gene expression dataset and KEGG DB.</h5>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+</div>
+<div id="number-of-differentially-expressed-genes-between-pre-and-post-allergen-inhalation-challenge" class="section level4">
+<h4><span class="header-section-number">9.2.1.3</span> Number of differentially expressed genes between pre and post allergen inhalation challenge</h4>
+</div>
+<div id="p-value-of-randomly-selecting-50-genes-from-all-observed-genes" class="section level4">
+<h4><span class="header-section-number">9.2.1.4</span> P-value of randomly selecting 50 genes from all observed genes</h4>
+<pre><code>##       Pathways    Genes              DB
+## 4448    Asthma     IL10 KEGG_2019_Human
+## 5064    Asthma     IL13 KEGG_2019_Human
+## 5680    Asthma     PRG2 KEGG_2019_Human
+## 5988    Asthma   RNASE3 KEGG_2019_Human
+## 6292    Asthma      IL3 KEGG_2019_Human
+## 6594    Asthma      IL5 KEGG_2019_Human
+## 6896    Asthma      IL4 KEGG_2019_Human
+## 7196    Asthma      IL9 KEGG_2019_Human
+## 7793    Asthma HLA-DQB1 KEGG_2019_Human
+## 8089    Asthma HLA-DPB1 KEGG_2019_Human
+## 8385    Asthma   CD40LG KEGG_2019_Human
+## 8973    Asthma    MS4A2 KEGG_2019_Human
+## 9848    Asthma     CD40 KEGG_2019_Human
+## 10136   Asthma    CCL11 KEGG_2019_Human
+## 10421   Asthma      TNF KEGG_2019_Human
+## 10704   Asthma      EPX KEGG_2019_Human
+## 10987   Asthma  HLA-DMB KEGG_2019_Human
+## 11268   Asthma HLA-DPA1 KEGG_2019_Human
+## 11543   Asthma   FCER1A KEGG_2019_Human
+## 11817   Asthma   FCER1G KEGG_2019_Human
+## 12089   Asthma  HLA-DOB KEGG_2019_Human
+## 12358   Asthma  HLA-DMA KEGG_2019_Human
+## 12888   Asthma  HLA-DOA KEGG_2019_Human
+## 13151   Asthma HLA-DQA1 KEGG_2019_Human</code></pre>
+</div>
 <div id="references-2" class="section level4">
-<h4><span class="header-section-number">9.2.1.2</span> References</h4>
+<h4><span class="header-section-number">9.2.1.5</span> References</h4>
 <ol style="list-style-type: decimal">
 <li><a href="https://www.edx.org/course/probability-the-science-of-uncertainty-and-data">Probability - The Science of Uncertainty and Data</a></li>
 <li>Falcon S., Gentleman R. (2008) Hypergeometric Testing Used for Gene Set Enrichment Analysis. In: Bioconductor Case Studies. Use R!. Springer, New York, NY</li>
