@@ -79,7 +79,7 @@
 
 \title{Omics Central}
 \author{Amrit Singh}
-\date{2020-02-25}
+\date{2020-02-28}
 
 \begin{document}
 \maketitle
@@ -516,11 +516,73 @@ probabilities}\label{hypergeometric-probabilities}
 \end{itemize}
 
 Size of sample space (\(\Omega \)) = \(n \choose k \): all ways to draw
-k genes from n genes Event of interest: \# of ways to get i genes from
-Pathway A after drawing k genes = (\# of ways to select i genes from
-Pathway A from a total of m genes in Pathway A, \(m \choose i \)) x (\#
-of ways to get k-i from the remaining n-m genes not in Pathway A,
-\(n-m \choose k-i \))
+k genes from n genes
+
+Event of interest: \# of ways to get i genes from Pathway A after
+drawing k genes = (\# of ways to select i genes from Pathway A from a
+total of m genes in Pathway A, \(m \choose i \)) x (\# of ways to get
+k-i from the remaining n-m genes not in Pathway A, \(n-m \choose k-i \))
+
+\subsubsection{Asthma case study}\label{asthma-case-study}
+
+\paragraph{Step 1: Number of genes
+measured}\label{step-1-number-of-genes-measured}
+
+5443 gene transcripts were profiled in 28 blood samples from asthmatic
+individual undergoing allergen inhalation challenge.
+
+\paragraph{Step 2: Number of genes observed in the
+DB}\label{step-2-number-of-genes-observed-in-the-db}
+
+The
+\href{https://github.com/singha53/omicsCentralDatasets/blob/master/inst/extdata/dataCleaning/pathwayDB/pathways.md}{KEGG
+database} consisted of 7802 genes.
+
+\paragraph{Step 3: Overlap between gene dataset and pathway
+DB}\label{step-3-overlap-between-gene-dataset-and-pathway-db}
+
+There were 5357 genes that overlapped between the genes measured and
+those observed in the DB.
+
+\paragraph{Step 4: Keep common genes in gene expression dataset and KEGG
+DB.}\label{step-4-keep-common-genes-in-gene-expression-dataset-and-kegg-db.}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\subsubsection{Number of differentially expressed genes between pre and
+post allergen inhalation
+challenge}\label{number-of-differentially-expressed-genes-between-pre-and-post-allergen-inhalation-challenge}
+
+\subsubsection{P-value of randomly selecting 50 genes from all observed
+genes}\label{p-value-of-randomly-selecting-50-genes-from-all-observed-genes}
+
+\begin{verbatim}
+##       Pathways    Genes              DB
+## 4448    Asthma     IL10 KEGG_2019_Human
+## 5064    Asthma     IL13 KEGG_2019_Human
+## 5680    Asthma     PRG2 KEGG_2019_Human
+## 5988    Asthma   RNASE3 KEGG_2019_Human
+## 6292    Asthma      IL3 KEGG_2019_Human
+## 6594    Asthma      IL5 KEGG_2019_Human
+## 6896    Asthma      IL4 KEGG_2019_Human
+## 7196    Asthma      IL9 KEGG_2019_Human
+## 7793    Asthma HLA-DQB1 KEGG_2019_Human
+## 8089    Asthma HLA-DPB1 KEGG_2019_Human
+## 8385    Asthma   CD40LG KEGG_2019_Human
+## 8973    Asthma    MS4A2 KEGG_2019_Human
+## 9848    Asthma     CD40 KEGG_2019_Human
+## 10136   Asthma    CCL11 KEGG_2019_Human
+## 10421   Asthma      TNF KEGG_2019_Human
+## 10704   Asthma      EPX KEGG_2019_Human
+## 10987   Asthma  HLA-DMB KEGG_2019_Human
+## 11268   Asthma HLA-DPA1 KEGG_2019_Human
+## 11543   Asthma   FCER1A KEGG_2019_Human
+## 11817   Asthma   FCER1G KEGG_2019_Human
+## 12089   Asthma  HLA-DOB KEGG_2019_Human
+## 12358   Asthma  HLA-DMA KEGG_2019_Human
+## 12888   Asthma  HLA-DOA KEGG_2019_Human
+## 13151   Asthma HLA-DQA1 KEGG_2019_Human
+\end{verbatim}
 
 \subsubsection{References}\label{references-2}
 
